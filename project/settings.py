@@ -22,8 +22,8 @@ ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '').split(',')
 
 if not DEBUG:
     CSRF_TRUSTED_ORIGINS = [
-        'rage.rodeo',
-        'www.rage.rodeo',
+        'https://rage.rodeo',
+        'https://www.rage.rodeo',
     ]
 
     SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
