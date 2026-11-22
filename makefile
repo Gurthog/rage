@@ -1,4 +1,4 @@
-.PHONY: check run shell
+.PHONY: check run shell test
 
 check:
 	uv run manage.py check
@@ -8,4 +8,7 @@ run:
 
 shell:
 	uv run manage.py shell
+
+test:
+	uv run manage.py test
 

@@ -46,7 +46,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 ]
 
-# INSTALLED_APPS.extend([])
+INSTALLED_APPS.extend([
+    'core.apps.CoreConfig',
+])
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -106,6 +108,8 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+AUTH_USER_MODEL = 'core.User'
+
 
 # Internationalization
 
@@ -124,10 +128,10 @@ STATIC_URL = 'static/'
 
 STATIC_ROOT = BASE_DIR / 'static'
 
-STATIC_SHARE = os.getenv('STATIC_SHARE')
+# STATIC_SHARE = os.getenv('STATIC_SHARE')
 
-if STATIC_SHARE:
-    STATICFILES_DIRS = [STATIC_SHARE,]
+# if STATIC_SHARE:
+#     STATICFILES_DIRS = [STATIC_SHARE,]
 
 
 # Email
