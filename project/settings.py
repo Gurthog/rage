@@ -21,7 +21,10 @@ ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '').split(',')
 # Cloudflare prod
 
 if not DEBUG:
-    CSRF_TRUSTED_ORIGINS = []
+    CSRF_TRUSTED_ORIGINS = [
+        'rage.rodeo',
+        'www.rage.rodeo',
+    ]
 
     SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
@@ -43,7 +46,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 ]
 
-INSTALLED_APPS.extend([])
+# INSTALLED_APPS.extend([])
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -82,14 +85,6 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
-        'OPTIONS': {
-            'timeout': 20,
-            'init_command': (
-                'PRAGMA journal_mode=WAL;',
-                'PRAGMA cache_size=-64000;',
-                'PRAGMA synchronous=NORMAL;',
-            )
-        }
     }
 }
 
