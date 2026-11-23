@@ -2,6 +2,7 @@ import os
 from pathlib import Path
 from secrets import token_urlsafe
 
+from django.core.exceptions import ImproperlyConfigured
 from dotenv import load_dotenv
 
 
@@ -11,9 +12,13 @@ load_dotenv()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = os.getenv('DJANGO_SECRET_KEY', token_urlsafe(64))
-
 DEBUG = os.getenv('DJANGO_DEBUG', 'False').lower() == 'true'
+
+SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
+if not SECRET_KEY:
+    if not DEBUG:
+        raise ImproperlyConfigured('DJANGO_SECRET_KEY must be set when DEBUG is False.')
+    SECRET_KEY = token_urlsafe(64)
 
 ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '').split(',')
 
@@ -32,7 +37,7 @@ if not DEBUG:
 
     SESSION_COOKIE_SECURE = True
 
-    SECURE_SSL_REDIRET = True
+    SECURE_SSL_REDIRECT = True
 
 
 # Application definition
@@ -128,15 +133,17 @@ STATIC_URL = 'static/'
 
 STATIC_ROOT = BASE_DIR / 'static'
 
-# Comic originals are media, not collectstatic inputs. Set MEDIA_ROOT to a
-# mounted directory when appropriate; serving and mount checks are separate.
-MEDIA_ROOT = Path(os.getenv('MEDIA_ROOT') or BASE_DIR / 'media')
-MEDIA_URL = os.getenv('MEDIA_URL') or '/media/'
-
 STATIC_SHARE = os.getenv('STATIC_SHARE')
 
 if STATIC_SHARE:
     STATICFILES_DIRS = [Path(STATIC_SHARE)]
+
+# Comic originals are media, not collectstatic inputs. Set MEDIA_ROOT to a
+# mounted directory when appropriate; serving and mount checks are separate.
+MEDIA_ROOT = Path(os.getenv('MEDIA_ROOT') or BASE_DIR / 'media')
+
+MEDIA_URL = os.getenv('MEDIA_URL') or '/media/'
+
 
 
 # Email

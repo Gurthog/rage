@@ -50,6 +50,9 @@ class Comic(models.Model):
             ),
         ]
 
+    def __str__(self):
+        return self.title
+
     def save(self, *args, **kwargs):
         if not self.slug:
             prefix = slugify(self.title)[:222].strip('-') or 'comic'
