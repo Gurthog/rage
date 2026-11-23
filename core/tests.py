@@ -1,12 +1,31 @@
 import base64
+import os
+import runpy
 import tempfile
+from pathlib import Path
+from unittest.mock import patch
 
 from django.conf import settings
 from django.core.exceptions import ValidationError
 from django.core.files.uploadedfile import SimpleUploadedFile
-from django.test import TestCase, override_settings
+from django.test import SimpleTestCase, TestCase, override_settings
 
 from core.models import Character, Comic, Tag
+
+
+class StaticConfigurationTests(SimpleTestCase):
+    def test_static_share_is_optional(self):
+        for value in (None, ''):
+            with self.subTest(value=value), patch.dict(os.environ, {}, clear=True), patch('dotenv.load_dotenv'):
+                if value is not None:
+                    os.environ['STATIC_SHARE'] = value
+                config = runpy.run_path(str(Path(__file__).resolve().parent.parent / 'project/settings.py'))
+                self.assertNotIn('STATICFILES_DIRS', config)
+
+    def test_static_share_is_a_staticfiles_directory(self):
+        with patch.dict(os.environ, {'STATIC_SHARE': '/tmp/static-share'}), patch('dotenv.load_dotenv'):
+            config = runpy.run_path(str(Path(__file__).resolve().parent.parent / 'project/settings.py'))
+        self.assertEqual(config['STATICFILES_DIRS'], [Path('/tmp/static-share')])
 
 
 class MediaConfigurationTests(TestCase):

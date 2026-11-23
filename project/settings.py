@@ -133,10 +133,10 @@ STATIC_ROOT = BASE_DIR / 'static'
 MEDIA_ROOT = Path(os.getenv('MEDIA_ROOT') or BASE_DIR / 'media')
 MEDIA_URL = os.getenv('MEDIA_URL') or '/media/'
 
-# STATIC_SHARE = os.getenv('STATIC_SHARE')
+STATIC_SHARE = os.getenv('STATIC_SHARE')
 
-# if STATIC_SHARE:
-#     STATICFILES_DIRS = [STATIC_SHARE,]
+if STATIC_SHARE:
+    STATICFILES_DIRS = [Path(STATIC_SHARE)]
 
 
 # Email
