@@ -128,6 +128,11 @@ STATIC_URL = 'static/'
 
 STATIC_ROOT = BASE_DIR / 'static'
 
+# Comic originals are media, not collectstatic inputs. Set MEDIA_ROOT to a
+# mounted directory when appropriate; serving and mount checks are separate.
+MEDIA_ROOT = Path(os.getenv('MEDIA_ROOT') or BASE_DIR / 'media')
+MEDIA_URL = os.getenv('MEDIA_URL') or '/media/'
+
 # STATIC_SHARE = os.getenv('STATIC_SHARE')
 
 # if STATIC_SHARE:
