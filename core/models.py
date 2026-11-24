@@ -1,13 +1,8 @@
 from uuid import uuid4
 
-from django.contrib.auth.models import AbstractUser
 from django.core.validators import MinValueValidator, RegexValidator
 from django.db import models
 from django.utils.text import slugify
-
-
-class User(AbstractUser):
-    pass
 
 
 class Character(models.Model):

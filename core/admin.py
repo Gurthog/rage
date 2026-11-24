@@ -1,12 +1,6 @@
 from django.contrib import admin
-from django.contrib.auth.admin import UserAdmin
 
-from .models import Character, Comic, Tag, User
-
-
-@admin.register(User)
-class CustomUserAdmin(UserAdmin):
-    pass
+from .models import Character, Comic, Tag
 
 
 @admin.register(Comic)
