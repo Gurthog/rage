@@ -1,8 +1,11 @@
+from django.contrib.auth import get_user_model
 from django.contrib.auth.models import Permission
 from django.test import TestCase
 from django.urls import reverse
 
-from core.models import Character, Comic, Tag, User
+from core.models import Character, Comic, Tag
+
+User = get_user_model()
 
 
 class AdminTests(TestCase):
@@ -21,7 +24,7 @@ class AdminTests(TestCase):
         self.client.force_login(self.admin)
 
     def test_all_models_are_available_in_admin(self):
-        for model in ('comic', 'character', 'tag', 'user'):
+        for model in ('comic', 'character', 'tag'):
             with self.subTest(model=model):
                 self.assertEqual(self.client.get(reverse(f'admin:core_{model}_changelist')).status_code, 200)
 

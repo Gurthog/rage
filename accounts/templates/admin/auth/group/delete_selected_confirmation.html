@@ -1,0 +1,10 @@
+{% extends "admin/delete_selected_confirmation.html" %}
+{% load i18n admin_urls %}
+{% block breadcrumbs %}
+<ol class="breadcrumbs">
+  <li><a href="{% url 'admin:index' %}">{% translate 'Home' %}</a></li>
+  <li><a href="{% url 'admin:app_list' app_label='accounts' %}">Accounts</a></li>
+  <li><a href="{% url opts|admin_urlname:'changelist' %}">{{ opts.verbose_name_plural|capfirst }}</a></li>
+  <li aria-current="page">{% translate 'Delete multiple objects' %}</li>
+</ol>
+{% endblock %}

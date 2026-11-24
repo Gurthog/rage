@@ -1,0 +1,88 @@
+/* Keep Django's layout and semantic status colors, but give the admin a
+   restrained rage-comic palette. Explicit light mode must override auto dark. */
+#site-name, .login-bottom-text {
+    font-family: Impact, "Arial Narrow", sans-serif;
+    font-weight: 700;
+}
+
+.login-bottom-text {
+    margin: 0;
+    padding: 15px 16px;
+    background: var(--header-bg);
+    color: var(--header-branding-color);
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+:root, html[data-theme="light"] {
+    --primary: #9b1830;
+    --secondary: #262220;
+    --accent: #fff8ea;
+    --primary-fg: #fff;
+    --body-fg: #292321;
+    --body-bg: #fffaf0;
+    --body-quiet-color: #625854;
+    --body-medium-color: #443b38;
+    --body-loud-color: #171312;
+    --header-color: #fff8ea;
+    --header-branding-color: #fff8ea;
+    --header-bg: #262220;
+    --header-link-color: #fff8ea;
+    --breadcrumbs-fg: #f5e5dc;
+    --breadcrumbs-link-fg: #fff;
+    --breadcrumbs-bg: #792031;
+    --link-fg: #88182c;
+    --link-hover-color: #580d1a;
+    --link-selected-fg: #792031;
+    --hairline-color: #e7dcd0;
+    --border-color: #bdb0a5;
+    --darkened-bg: #f4ebdf;
+    --selected-bg: #e8dbce;
+    --selected-row: #f8e5d7;
+    --button-bg: #792031;
+    --button-hover-bg: #580d1a;
+    --default-button-bg: #792031;
+    --default-button-hover-bg: #580d1a;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --primary: #792031;
+        --body-fg: #f2e9df;
+        --body-bg: #191716;
+        --body-quiet-color: #d2c5bb;
+        --body-medium-color: #e1d5cb;
+        --body-loud-color: #fffaf0;
+        --breadcrumbs-fg: #f5e5dc;
+        --breadcrumbs-link-fg: #fff;
+        --breadcrumbs-bg: #792031;
+        --link-fg: #ffb5b7;
+        --link-hover-color: #ffd7d5;
+        --link-selected-fg: #ffb5b7;
+        --hairline-color: #423936;
+        --border-color: #655752;
+        --darkened-bg: #292422;
+        --selected-bg: #342d2a;
+        --selected-row: #48322f;
+    }
+}
+
+html[data-theme="dark"] {
+    --primary: #792031;
+    --body-fg: #f2e9df;
+    --body-bg: #191716;
+    --body-quiet-color: #d2c5bb;
+    --body-medium-color: #e1d5cb;
+    --body-loud-color: #fffaf0;
+    --breadcrumbs-fg: #f5e5dc;
+    --breadcrumbs-link-fg: #fff;
+    --breadcrumbs-bg: #792031;
+    --link-fg: #ffb5b7;
+    --link-hover-color: #ffd7d5;
+    --link-selected-fg: #ffb5b7;
+    --hairline-color: #423936;
+    --border-color: #655752;
+    --darkened-bg: #292422;
+    --selected-bg: #342d2a;
+    --selected-row: #48322f;
+}
