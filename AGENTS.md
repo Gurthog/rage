@@ -7,6 +7,7 @@ For frontend layout, styling, imagery or copy, read `docs/frontend-design.md` fo
 ## Engineering
 
 - Use `uv` for Python commands and dependencies; keep SQLite.
+- Place app tests in the app's `tests/` package and project-wide tests in `project/tests/`. Name files `test_<area>.py`, group related behavior by subject, and split files further when useful.
 - Prefer Django's built-in features where sufficient; otherwise prefer htmx for interactive UI, without a client-side framework or build step.
 
 ## Agent skills

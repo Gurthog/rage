@@ -2,7 +2,7 @@ from django.contrib.auth.models import Permission
 from django.test import TestCase
 from django.urls import reverse
 
-from .models import Character, Comic, Tag, User
+from core.models import Character, Comic, Tag, User
 
 
 class AdminTests(TestCase):
