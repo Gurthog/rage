@@ -14,7 +14,7 @@ class AdminThemeTests(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, 'RAGE ADMINISTRATION')
         self.assertContains(response, ' | Rage</title>', html=False)
-        self.assertContains(response, static('core/admin-theme.css'))
+        self.assertContains(response, static('project/admin-theme.css'))
         self.assertContains(response, 'theme-toggle')
         self.assertNotContains(response, 'Django administration')
 
@@ -48,4 +48,4 @@ class AdminThemeTests(TestCase):
         self.assertNotContains(response, 'BOTTOM TEXT')
 
     def test_theme_stylesheet_is_available_to_staticfiles(self):
-        self.assertIsNotNone(finders.find('core/admin-theme.css'))
+        self.assertIsNotNone(finders.find('project/admin-theme.css'))

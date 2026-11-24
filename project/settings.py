@@ -134,10 +134,12 @@ STATIC_URL = 'static/'
 
 STATIC_ROOT = BASE_DIR / 'static'
 
+STATICFILES_DIRS = [BASE_DIR / 'project' / 'static']
+
 STATIC_SHARE = os.getenv('STATIC_SHARE')
 
 if STATIC_SHARE:
-    STATICFILES_DIRS = [Path(STATIC_SHARE)]
+    STATICFILES_DIRS.append(Path(STATIC_SHARE))
 
 # Comic originals are media, not collectstatic inputs. Set MEDIA_ROOT to a
 # mounted directory when appropriate; serving and mount checks are separate.

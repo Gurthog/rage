@@ -47,12 +47,15 @@ class StaticConfigurationTests(SimpleTestCase):
                 if value is not None:
                     os.environ['STATIC_SHARE'] = value
                 config = runpy.run_path(str(Path(__file__).resolve().parent.parent / 'settings.py'))
-                self.assertNotIn('STATICFILES_DIRS', config)
+                self.assertEqual(config['STATICFILES_DIRS'], [config['BASE_DIR'] / 'project' / 'static'])
 
     def test_static_share_is_a_staticfiles_directory(self):
         with patch.dict(os.environ, {'STATIC_SHARE': '/tmp/static-share', 'DJANGO_SECRET_KEY': 'test-secret'}, clear=True), patch('dotenv.load_dotenv'):
             config = runpy.run_path(str(Path(__file__).resolve().parent.parent / 'settings.py'))
-        self.assertEqual(config['STATICFILES_DIRS'], [Path('/tmp/static-share')])
+        self.assertEqual(
+            config['STATICFILES_DIRS'],
+            [config['BASE_DIR'] / 'project' / 'static', Path('/tmp/static-share')],
+        )
 
 
 class MediaConfigurationTests(TestCase):
